@@ -5,9 +5,6 @@ import { FaMinusCircle, FaPlusCircle, FaTrashAlt } from 'react-icons/fa'
 import Swal from 'sweetalert2';
 
 const Cart = () => {
-
-
-
   return (
     <>
 
