@@ -11,7 +11,7 @@ const CardProduct = ({name, price, image}) => {
       />
       <h2>{name}</h2>
       <span>{price}</span>
-      <button>Ver Detalhes</button>
+      <button className='button-default'>Ver Detalhes</button>
     </div>
   );
 }

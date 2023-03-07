@@ -67,6 +67,19 @@
   align-items: center;
 }
 
+.card-product h2 {
+  color: #1B4A2F;
+  font-size: 18px;
+}
+
+.button-default {
+  background-color: #1B4A2F;
+  border: 0;
+  padding: 10px 5px;
+  color: #FFF;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
 /*  Details styles */
 
