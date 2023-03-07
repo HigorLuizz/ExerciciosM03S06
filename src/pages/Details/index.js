@@ -7,9 +7,9 @@ const Details = () => {
       <div className='product-details'>
         <div>
           <img
-            src="https://www.farmasesi.com.br/estatico/sesi/images/temp/222_16527.png"
-            width="250px"
+            src="https://www.farmasesi.com.br/estatico/sesi/images/produto/16534.png"
             alt="foto do produto"
+            className='product-details-photo'
           />
         </div>
 
@@ -20,9 +20,11 @@ const Details = () => {
           </div>
 
           <div className='product-controls'>
-            <button>Adicionar a sacola</button>
+            <div>
+              <button>Adicionar a sacola</button>
+            </div>
             <button>-</button>
-            <span>1</span>
+            <span className='product-quantity'>1</span>
             <button>+</button>
           </div>
         </div>
