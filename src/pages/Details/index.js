@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom'
 import { CartContext } from '../../contexts/CartContext';
+import { generateDiscount } from '../../utils/generateDiscount';
 
 const Details = () => {
 
-  const {message} = useContext(CartContext)
   const data = useLocation()
   const [amount, setAmount] = useState(1)
+
+  const discount = generateDiscount(data.state.price, data.state.discount )
 
   const handleAddProductInCart = () => {
   }
@@ -21,7 +23,7 @@ const Details = () => {
 
   return (
     <div className='main-container'>
-      {message}
+
       <div className='product-details'>
         <div>
           <img
@@ -34,8 +36,10 @@ const Details = () => {
         <div className='product-content'>
           <div>
             <h2>{data.state.name}</h2>
-            <span>{data.state.priceFormatted}</span>
+            <span style={{ textDecoration: 'line-through'}}>{data.state.priceFormatted}</span>
           </div>
+
+          {discount.valorComDesconto}
 
           <div className='product-controls'>
             <div>
