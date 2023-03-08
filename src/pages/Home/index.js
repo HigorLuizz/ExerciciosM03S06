@@ -39,6 +39,8 @@ const Home = () => {
   }, [])
 
   console.log(products)
+
+
   return (
     <div>
       <div className="main-container">
@@ -47,9 +49,7 @@ const Home = () => {
             products.map((product) => (
               <CardProduct
                 key={product.id}
-                name={product.name}
-                price={product.priceFormatted}
-                image={product.image}
+                product={product}
               />
             ))
           }
