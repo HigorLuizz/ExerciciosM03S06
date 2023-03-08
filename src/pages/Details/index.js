@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom'
+import { CartContext } from '../../contexts/CartContext';
 
 const Details = () => {
 
+  const {message} = useContext(CartContext)
   const data = useLocation()
   const [amount, setAmount] = useState(1)
 
+  const handleAddProductInCart = () => {
+  }
 
   const handleIncrementAmount = () => {
     setAmount(amount + 1)
@@ -17,7 +21,7 @@ const Details = () => {
 
   return (
     <div className='main-container'>
-
+      {message}
       <div className='product-details'>
         <div>
           <img
@@ -35,7 +39,7 @@ const Details = () => {
 
           <div className='product-controls'>
             <div>
-              <button>Adicionar a sacola</button>
+              <button onClick={handleAddProductInCart}>Adicionar a sacola</button>
             </div>
 
             <button
