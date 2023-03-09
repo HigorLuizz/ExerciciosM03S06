@@ -3,6 +3,7 @@ export const generateDiscount = (valor, percentual) => {
   const valorComDesconto = valor - desconto;
   const porcentagemFormatada = `${percentual}%`;
 
+
   return {
     porcentagem: porcentagemFormatada,
     valorComDesconto: Number(valorComDesconto.toFixed(2))

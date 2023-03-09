@@ -1,14 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom'
-import { CartContext } from '../../contexts/CartContext';
+
 import { generateDiscount } from '../../utils/generateDiscount';
+import { priceFormat } from '../../utils/priceFormat';
+
 
 const Details = () => {
 
   const data = useLocation()
   const [amount, setAmount] = useState(1)
 
-  const discount = generateDiscount(data.state.price, data.state.discount )
+  const discount = generateDiscount(data.state.price, data.state.discount)
+  const discountFormatted = priceFormat(discount.valorComDesconto)
 
   const handleAddProductInCart = () => {
   }
@@ -36,11 +39,11 @@ const Details = () => {
         <div className='product-content'>
           <div>
             <h2>{data.state.name}</h2>
-            <span style={{ textDecoration: 'line-through'}}>{data.state.priceFormatted}</span>
+            <span>
+              <span style={{ textDecoration: 'line-through' }}>{data.state.priceFormatted}</span>
+              <span> - {discountFormatted}</span>
+            </span>
           </div>
-
-          {discount.valorComDesconto}
-
           <div className='product-controls'>
             <div>
               <button onClick={handleAddProductInCart}>Adicionar a sacola</button>
@@ -49,9 +52,9 @@ const Details = () => {
             <button
               onClick={handleDecrementAmount}
               disabled={amount === 1}
-              >
-                -
-              </button>
+            >
+              -
+            </button>
             <span className='product-quantity'>{amount}</span>
             <button onClick={handleIncrementAmount}>+</button>
           </div>

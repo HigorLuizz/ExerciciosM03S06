@@ -1,9 +1,8 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom'
 
-
 const CardProduct = ({ product }) => {
-  const navigate = useNavigate()
+   const navigate = useNavigate()
 
   const handleClickProduct = () => {
     navigate('detalhes', { state: product })
