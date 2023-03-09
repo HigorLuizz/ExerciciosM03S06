@@ -13,7 +13,6 @@ const Home = () => {
 
     productsAction.getProducts()
     .then(response => {
-      console.log(response)
       setProducts(response.data.map(item => ({
         ...item,
         priceFormatted: priceFormat(item.price)
@@ -38,9 +37,6 @@ const Home = () => {
   useEffect(() => {
     getProducts();
   }, [])
-
-  console.log(products)
-
 
   return (
     <div>
