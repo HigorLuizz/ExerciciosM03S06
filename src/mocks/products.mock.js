@@ -1,3 +1,12 @@
+export const oneProductMock = {
+  "id": 1,
+  "name": "Creme hidratante facial",
+  "price": 50.00,
+  "discount": 5.0,
+  "priceFormatted": "R$50,00",
+  "image": "https://www.farmasesi.com.br/estatico/sesi/images/produto/16534.png"
+}
+
 export const productsMock = [{
   "id": 1,
   "name": "Creme hidratante facial",

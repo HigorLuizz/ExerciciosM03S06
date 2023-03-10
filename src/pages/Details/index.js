@@ -40,8 +40,16 @@ const Details = () => {
           <div>
             <h2>{data.state.name}</h2>
             <span>
-              <span style={{ textDecoration: 'line-through' }}>{data.state.priceFormatted}</span>
-              <span> - {discountFormatted}</span>
+              {
+                data.state.discount > 0 ? (
+                  <>
+                    <span style={{ textDecoration: 'line-through' }}>{data.state.priceFormatted}</span>
+                    - <span data-testid="discount-value">{discountFormatted}</span>
+                  </>
+                ) : (
+                  <span>{data.state.priceFormatted}</span>
+                )
+              }
             </span>
           </div>
           <div className='product-controls'>
@@ -52,11 +60,17 @@ const Details = () => {
             <button
               onClick={handleDecrementAmount}
               disabled={amount === 1}
+              data-testid="decrement-button"
             >
               -
             </button>
-            <span className='product-quantity'>{amount}</span>
-            <button onClick={handleIncrementAmount}>+</button>
+            <span className='product-quantity' data-testid="amount-product">{amount}</span>
+            <button
+              data-testid="increment-button"
+              onClick={handleIncrementAmount}
+            >
+              +
+            </button>
           </div>
         </div>
 
