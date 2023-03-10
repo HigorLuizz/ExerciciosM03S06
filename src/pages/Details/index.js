@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom'
+import { CartContext } from '../../contexts/CartContext';
 
 import { generateDiscount } from '../../utils/generateDiscount';
 import { priceFormat } from '../../utils/priceFormat';
@@ -7,13 +8,16 @@ import { priceFormat } from '../../utils/priceFormat';
 
 const Details = () => {
 
+  const {addProduct} = useContext(CartContext)
+
   const data = useLocation()
   const [amount, setAmount] = useState(1)
 
-  const discount = generateDiscount(data.state.price, data.state.discount)
-  const discountFormatted = priceFormat(discount.valorComDesconto)
+  const priceWithDiscount = generateDiscount(data.state.price, data.state.discount)
+  const discountFormatted = priceFormat(priceWithDiscount.valorComDesconto)
 
   const handleAddProductInCart = () => {
+    addProduct(data.state, '', amount, priceWithDiscount.valorComDesconto)
   }
 
   const handleIncrementAmount = () => {

@@ -1,6 +1,7 @@
 export const generateDiscount = (valor, percentual) => {
-  const desconto = Number(valor) * Number(percentual) / 100;
+  const desconto = Number((Number(valor) * Number(percentual) / 100).toFixed(2));
   const valorComDesconto = valor - desconto;
+  console.log(valorComDesconto)
   const porcentagemFormatada = `${percentual}%`;
 
 
