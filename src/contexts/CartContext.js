@@ -1,26 +1,24 @@
 // inicializar o contexto
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 import { v4 as uuidv4 } from 'uuid';
-import { generateDiscount } from "../utils/generateDiscount";
 import { priceFormat } from "../utils/priceFormat";
 
 export const CartContext = createContext()
 
 // Montar o provedor
 
-export const CartProvider = ({children}) => {
+export const CartProvider = ({ children }) => {
 
   const [cart, setCart] = useState([])
 
-
   const addProduct = (product, observations, amount, priceWithDiscount) => {
-
-    console.log("o desconto é ", product.discount)
 
     const data = {
       itemId: uuidv4(),
       product,
-      priceWithDiscount: priceFormat(priceWithDiscount),
+      priceWithDiscountFormatted: priceFormat(priceWithDiscount),
+      priceWithDiscount,
       observations,
       amount,
       subTotal: priceWithDiscount * amount,
@@ -30,10 +28,34 @@ export const CartProvider = ({children}) => {
     setCart([...cart, data])
   }
 
+  const changeAmount = (itemId, amount) => {
+    setCart(cart.map(item => {
+      if (item.itemId === itemId) {
+        item.amount = amount
+        item.subTotal = item.priceWithDiscount * amount
+        item.subTotalFormatted = priceFormat(item.priceWithDiscount * amount)
+      }
+      return item
+    }))
+  }
+
+  const removeItem = (itemId) => {
+    setCart(cart.filter(item => {
+      if (item.itemId !== itemId) {
+        return true
+      } else {
+        return false
+      }
+    }))
+    toast.success('Deletado com sucesso')
+  }
+
   return (
     <CartContext.Provider value={{
       cart: cart,
-      addProduct: addProduct
+      addProduct: addProduct,
+      removeItem: removeItem,
+      changeAmount: changeAmount
     }}>
       {children}
     </CartContext.Provider>
